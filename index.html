@@ -17,20 +17,14 @@
       --emerald-border: #a7f3d0;
       --emerald-text: #065f46;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
     }
-
+    .lang-radio { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
     .hero {
       background: linear-gradient(135deg, #0b193c 0%, #1d4ed8 60%, #2563eb 100%);
       color: #ffffff;
@@ -40,12 +34,7 @@
       border-bottom-right-radius: 28px;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
     }
-
-    .hero-inner {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
+    .hero-inner { max-width: 820px; margin: 0 auto; }
     .brand-badge {
       display: inline-block;
       background: rgba(255, 255, 255, 0.15);
@@ -58,20 +47,8 @@
       text-transform: uppercase;
       margin-bottom: 12px;
     }
-
-    .hero h1 {
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      margin-bottom: 6px;
-    }
-
-    .hero p {
-      font-size: 14px;
-      color: #dbeafe;
-      margin-bottom: 16px;
-    }
-
+    .hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: #dbeafe; margin-bottom: 16px; }
     .lang-toggle {
       display: inline-flex;
       background: rgba(0, 0, 0, 0.25);
@@ -80,30 +57,24 @@
       padding: 4px;
       gap: 4px;
     }
-
     .lang-btn {
-      border: none;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.85);
+      display: inline-block;
+      color: rgba(255, 255, 255, 0.88);
       font-size: 13px;
       font-weight: 700;
       padding: 6px 16px;
       border-radius: 999px;
       cursor: pointer;
+      user-select: none;
       transition: all 0.2s ease;
     }
-
-    .lang-btn.active {
-      background: #ffffff;
-      color: var(--primary);
-    }
-
-    .container {
-      max-width: 820px;
-      margin: -22px auto 48px;
-      padding: 0 16px;
-    }
-
+    #lang-en:checked ~ .hero label[for="lang-en"],
+    #lang-hi:checked ~ .hero label[for="lang-hi"] { background: #ffffff; color: var(--primary); }
+    #lang-en:checked ~ .hero [data-lang="hi"],
+    #lang-en:checked ~ .container [data-lang="hi"] { display: none; }
+    #lang-hi:checked ~ .hero [data-lang="en"],
+    #lang-hi:checked ~ .container [data-lang="en"] { display: none; }
+    .container { max-width: 820px; margin: -22px auto 48px; padding: 0 16px; }
     .meta-bar {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -118,11 +89,7 @@
       color: var(--muted);
       box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
     }
-
-    .meta-bar strong {
-      color: var(--text);
-    }
-
+    .meta-bar strong { color: var(--text); }
     .highlight-box {
       background: var(--emerald-bg);
       border: 1px solid var(--emerald-border);
@@ -133,7 +100,6 @@
       font-size: 14px;
       font-weight: 600;
     }
-
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -142,57 +108,18 @@
       margin-bottom: 14px;
       box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
     }
-
-    .card h2 {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .card p,
-    .card li {
-      font-size: 14.5px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .card ul {
-      padding-left: 20px;
-      margin-top: 6px;
-    }
-
-    .card li:last-child,
-    .card p:last-child {
-      margin-bottom: 0;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: underline;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 24px;
-    }
-
-    [data-lang="hi"] {
-      display: none;
-    }
-
-    body.hindi [data-lang="en"] {
-      display: none;
-    }
-
-    body.hindi [data-lang="hi"] {
-      display: block;
-    }
+    .card h2 { font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+    .card p, .card li { font-size: 14.5px; color: var(--muted); margin-bottom: 8px; }
+    .card ul { padding-left: 20px; margin-top: 6px; }
+    .card li:last-child, .card p:last-child { margin-bottom: 0; }
+    a { color: var(--primary); text-decoration: underline; }
+    .footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 24px; }
   </style>
 </head>
 <body>
+  <input type="radio" name="page-lang" id="lang-en" class="lang-radio" checked />
+  <input type="radio" name="page-lang" id="lang-hi" class="lang-radio" />
+
   <header class="hero">
     <div class="hero-inner">
       <div class="brand-badge">AMP OHM • com.ampohm.app</div>
@@ -200,10 +127,9 @@
       <h1 data-lang="hi">प्राइवेसी पॉलिसी</h1>
       <p data-lang="en">Data security &amp; privacy standards for AMP OHM by AudioXpert</p>
       <p data-lang="hi">AudioXpert द्वारा निर्मित AMP OHM के लिए डेटा सुरक्षा और गोपनीयता मानक</p>
-
       <div class="lang-toggle" role="group" aria-label="Language switch">
-        <button type="button" class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
-        <button type="button" class="lang-btn" id="btn-hi" onclick="setLang('hi')">हिंदी</button>
+        <label for="lang-en" class="lang-btn">English</label>
+        <label for="lang-hi" class="lang-btn">हिंदी</label>
       </div>
     </div>
   </header>
@@ -215,7 +141,6 @@
       <div><strong>Last Updated:</strong> November 23, 2026</div>
     </div>
 
-    <!-- ENGLISH CONTENT -->
     <div data-lang="en">
       <div class="highlight-box">
         Privacy by Design: All audio and lighting calculation formulas execute strictly locally in volatile device memory (RAM). Zero calculation inputs or project specifications are transmitted to external servers.
@@ -223,100 +148,77 @@
 
       <section class="card">
         <h2>1. Introduction</h2>
-        <p>
-          Amp Ohm is developed by AudioXpert to provide sound engineers, audio operators, DJs, and stage lighting technicians with fast, reliable calculation tools. These include loudspeaker impedance (Series, Parallel, and Series-Parallel), amplifier power and headroom matching, top speaker &amp; crossover matching, and DMX 512 fixture addressing. We respect your privacy and are committed to transparent, privacy-centric data practices.
-        </p>
+        <p>Amp Ohm is developed by AudioXpert to provide sound engineers, audio operators, DJs, and stage lighting technicians with fast, reliable calculation tools. These include loudspeaker impedance (Series, Parallel, and Series-Parallel), amplifier power and headroom matching, top speaker &amp; crossover matching, and DMX 512 fixture addressing. We respect your privacy and are committed to transparent, privacy-centric data practices.</p>
       </section>
 
       <section class="card">
         <h2>2. Information and Data Handling</h2>
         <p>To provide complete transparency, we distinguish how different categories of data are processed:</p>
         <ul>
-          <li><strong>Calculator Inputs &amp; Outputs:</strong> Any numerical parameters entered into calculators (such as wattage ratings, speaker impedances, driver counts, headroom multipliers, or DMX channels) are processed transiently in device RAM. They are not stored on remote servers, recorded in external databases, or linked to your personal identity.</li>
-          <li><strong>Locally Stored On-Device Preferences:</strong> Amp Ohm utilizes secure on-device sandboxed storage (SharedPreferences) solely for basic operational preferences. This includes your theme setting (Night Mode / Light Mode), language selection, haptic feedback toggle, local calculation history, a temporary 60-minute rewarded ad pass expiration timestamp (<code>ampohm_reward_pass_expiry_ms</code>), and cached subscription entitlement status (<code>rc_is_premium</code>, <code>rc_active_tier</code>, <code>rc_expiration_date</code>) to allow seamless offline launches.</li>
-          <li><strong>Information Processed by Third-Party SDKs:</strong> Integrated third-party SDKs (Google AdMob, Google Play Billing, RevenueCat, and Firebase) collect standardized telemetry and anonymous device identifiers necessary to deliver advertisements, process in-app purchases, verify entitlements, and retrieve remote configuration flags.</li>
-          <li><strong>Data Amp Ohm Itself Collects:</strong> Amp Ohm does not require account creation, user registration, social login, passwords, telephone numbers, or profile creation. We do not maintain user accounts or personal profiles on our servers.</li>
+          <li><strong>Calculator Inputs &amp; Outputs:</strong> Any numerical parameters entered into calculators (wattage ratings, speaker impedances, driver counts, headroom multipliers, or DMX channels) are processed transiently in device RAM. They are not stored on remote servers or linked to your personal identity.</li>
+          <li><strong>Locally Stored Preferences:</strong> Amp Ohm uses secure on-device sandboxed storage (SharedPreferences) solely for theme setting, language selection, haptic feedback toggle, local calculation history, 60-minute rewarded ad pass timestamp (<code>ampohm_reward_pass_expiry_ms</code>), and cached subscription entitlement status (<code>rc_is_premium</code>, <code>rc_active_tier</code>, <code>rc_expiration_date</code>).</li>
+          <li><strong>Information Processed by Third-Party SDKs:</strong> Integrated SDKs (Google AdMob, Google Play Billing, RevenueCat, and Firebase) process standardized telemetry and anonymous device identifiers necessary to deliver ads, process in-app purchases, verify entitlements, and retrieve remote configuration flags.</li>
+          <li><strong>Data Amp Ohm Itself Collects:</strong> Amp Ohm does not require account creation, registration, social login, passwords, phone numbers, or user profiles.</li>
         </ul>
       </section>
 
       <section class="card">
         <h2>3. Calculator Data</h2>
-        <p>
-          All mathematical calculations and formulas run entirely on your local device. Your audio rig configurations, stage setups, speaker wiring combinations, and calculation results remain strictly on your phone. No project files, calculation histories, or technical schematics are transmitted to AudioXpert or any third party.
-        </p>
+        <p>All mathematical calculations and formulas run entirely on your local device. Your audio rig configurations, stage setups, speaker wiring combinations, and calculation results remain strictly on your phone. No project files or calculation histories are transmitted to AudioXpert or any third party.</p>
       </section>
 
       <section class="card">
         <h2>4. Advertising (Google AdMob)</h2>
-        <p>The free version of Amp Ohm is supported by advertising delivered via Google AdMob (Google LLC). The implemented ad formats are:</p>
+        <p>The free version of Amp Ohm is supported by advertising delivered via Google AdMob (Google LLC):</p>
         <ul>
-          <li><strong>Banner Ads:</strong> Non-intrusive banner advertisements displayed at the bottom of calculation result screens for free-tier users.</li>
-          <li><strong>Rewarded Video Ads:</strong> User-initiated, opt-in rewarded video ads. When using a calculator, free-tier users can voluntarily choose to watch a short video ad to unlock a full 60-minute ad-free pass across all calculators in the app.</li>
-          <li><strong>Ad-Free Experience for Subscribers:</strong> Active Amp Ohm Pro subscribers receive a completely ad-free experience; all banner ads and rewarded video prompts are disabled throughout the entire app.</li>
-          <li><strong>Data Processing by Google AdMob:</strong> Google Mobile Ads SDK may automatically collect and process anonymous device identifiers (such as Google Advertising ID / AAID on Android), IP addresses for approximate geographic location and fraud prevention, device hardware specifications, and ad interaction metrics.</li>
+          <li><strong>Banner Ads:</strong> Non-intrusive banner ads displayed at the bottom of calculation result screens for free-tier users.</li>
+          <li><strong>Rewarded Video Ads:</strong> Opt-in video ads allowing free-tier users to watch a short ad to unlock a 60-minute ad-free pass across all calculators.</li>
+          <li><strong>Ad-Free for Subscribers:</strong> Active Amp Ohm Pro subscribers receive a 100% ad-free experience.</li>
+          <li><strong>Data Processing by Google AdMob:</strong> Google Mobile Ads SDK may process anonymous device identifiers (Google Advertising ID / AAID), IP addresses for approximate location and fraud prevention, hardware specs, and ad interaction metrics. Review <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google’s Privacy &amp; Terms</a>.</li>
         </ul>
-        <p>
-          To learn how Google collects and uses advertising data, please review Google’s Privacy &amp; Terms:
-          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/ads</a>
-        </p>
       </section>
 
       <section class="card">
         <h2>5. In-App Purchases &amp; Subscriptions (Google Play &amp; RevenueCat)</h2>
-        <p>Amp Ohm offers an optional "Amp Ohm Pro" upgrade providing 100% ad-free usage and unrestricted access to all calculators and export tools.</p>
+        <p>Amp Ohm offers an optional "Amp Ohm Pro" upgrade for 100% ad-free usage and unrestricted access:</p>
         <ul>
-          <li><strong>Payment Processing by Google Play:</strong> All subscription purchases and billing transactions are processed exclusively through Google Play Billing (Google LLC). AudioXpert and Amp Ohm never collect, view, process, or store your payment cards, bank account details, UPI credentials, or financial information.</li>
-          <li><strong>Subscription Verification via RevenueCat:</strong> We integrate the RevenueCat SDK (RevenueCat, Inc.) to validate store receipts, manage subscription states, verify the active "ampohm Pro" entitlement, and support purchase restorations. RevenueCat processes an anonymous app user identifier and receipt tokens generated by Google Play.</li>
-          <li><strong>Available Subscription Plans:</strong> Options include Pro Monthly (<code>ampohm_pro_monthly</code>, fallback ₹29 / Month) and Pro Yearly (<code>ampohm_pro_annual</code>, fallback ₹199 / Year) auto-renewing subscriptions.</li>
-          <li><strong>Automatic Renewal:</strong> Recurring monthly and yearly subscriptions automatically renew through Google Play unless cancelled by the user at least 24 hours prior to the end of the current billing cycle.</li>
-          <li><strong>Cancellation:</strong> Subscriptions may be cancelled at any time directly through Google Play Store (Account &gt; Payments &amp; subscriptions &gt; Subscriptions).</li>
-          <li><strong>Access Following Cancellation:</strong> Cancelling auto-renewal stops future billing; your Pro entitlement remains active and completely ad-free until the verified expiration date of the currently paid billing period.</li>
-          <li><strong>Purchase Restoration:</strong> You can restore an active subscription on any device using the same Google Play account by tapping "Restore Purchases" in the app.</li>
+          <li><strong>Payment Processing by Google Play:</strong> All purchases are processed exclusively through Google Play Billing (Google LLC). AudioXpert never collects or stores your cards, bank details, or UPI credentials.</li>
+          <li><strong>Verification via RevenueCat:</strong> We use RevenueCat SDK (RevenueCat, Inc.) to validate Google Play receipts and verify the active "ampohm Pro" entitlement.</li>
+          <li><strong>Available Plans:</strong> Pro Monthly (<code>ampohm_pro_monthly</code>, fallback ₹29 / Month) and Pro Yearly (<code>ampohm_pro_annual</code>, fallback ₹199 / Year) auto-renewing subscriptions.</li>
+          <li><strong>Renewal &amp; Cancellation:</strong> Subscriptions auto-renew unless cancelled in Google Play Store (Account &gt; Payments &amp; subscriptions &gt; Subscriptions) at least 24 hours before renewal. Pro access remains active until the end of the paid period, and active purchases can be restored on any device using "Restore Purchases".</li>
         </ul>
       </section>
 
       <section class="card">
         <h2>6. Data Security</h2>
-        <p>
-          We take reasonable and appropriate technical measures to safeguard application operations. All external network communications (Google Play Billing, RevenueCat entitlement checks, Google AdMob ad requests, and Firebase remote config lookups) occur exclusively over encrypted HTTPS/TLS connections. Device preferences are stored within sandboxed operating system storage. While we implement industry-standard practices, no electronic transmission or local mobile storage can be guaranteed to be 100% secure.
-        </p>
+        <p>All external network communications (Google Play Billing, RevenueCat, Google AdMob, and Firebase) occur over encrypted HTTPS/TLS connections, and device preferences remain inside sandboxed OS storage.</p>
       </section>
 
       <section class="card">
         <h2>7. Children’s Privacy</h2>
-        <p>
-          Amp Ohm is a professional calculation and engineering utility designed specifically for audio engineers, sound technicians, DJs, and stage electricians. The application is not directed to or intended for children under 13 years of age. We do not knowingly collect or solicit personal information from children under 13.
-        </p>
+        <p>Amp Ohm is a professional utility for audio engineers, DJs, and lighting technicians. It is not directed to children under 13 years of age, and we do not knowingly collect personal data from children under 13.</p>
       </section>
 
       <section class="card">
         <h2>8. Third-Party Services</h2>
-        <p>The application utilizes strictly the following verified third-party services:</p>
         <ul>
-          <li><strong>Google AdMob (Google LLC)</strong> – Advertising delivery and monetization for free-tier users.</li>
-          <li><strong>Google Play Billing (Google LLC)</strong> – In-app purchase and subscription payment processing.</li>
-          <li><strong>RevenueCat (RevenueCat, Inc.)</strong> – Subscription entitlement management and receipt verification.</li>
-          <li><strong>Google Firebase / Cloud Firestore (Google LLC)</strong> – Anonymous read-only remote configuration checks (<code>app_config/ads_settings</code> and <code>app_config/version_control</code>).</li>
+          <li><strong>Google AdMob (Google LLC)</strong> – Advertising delivery for free-tier users.</li>
+          <li><strong>Google Play Billing (Google LLC)</strong> – Subscription payment processing.</li>
+          <li><strong>RevenueCat (RevenueCat, Inc.)</strong> – Subscription entitlement &amp; receipt verification.</li>
+          <li><strong>Google Firebase / Cloud Firestore (Google LLC)</strong> – Anonymous read-only remote configuration (<code>app_config/ads_settings</code> and <code>app_config/version_control</code>).</li>
         </ul>
       </section>
 
       <section class="card">
         <h2>9. Changes to This Privacy Policy</h2>
-        <p>
-          AudioXpert may update this Privacy Policy from time to time to reflect operational, legal, or regulatory updates. The most current version will always be accessible directly through the application’s Settings &amp; Information section and on this page. Continued use of Amp Ohm following any revisions indicates your acknowledgment and acceptance of the updated policy.
-        </p>
+        <p>AudioXpert may update this Privacy Policy periodically. The latest version is always available inside the app’s Settings &amp; Information section and on this page.</p>
       </section>
 
       <section class="card">
         <h2>10. Contact Information</h2>
-        <p>
-          If you have any questions, concerns, or inquiries regarding this Privacy Policy or data handling in Amp Ohm, please contact AudioXpert directly at:
-        </p>
-        <p><strong>Email:</strong> <a href="mailto:audioxpert123@gmail.com">audioxpert123@gmail.com</a></p>
+        <p>For questions or inquiries regarding this Privacy Policy, contact AudioXpert directly at: <a href="mailto:audioxpert123@gmail.com">audioxpert123@gmail.com</a></p>
       </section>
     </div>
-
-    <!-- HINDI CONTENT -->
     <div data-lang="hi">
       <div class="highlight-box">
         प्राइवेसी बाय डिज़ाइन: सभी ऑडियो और लाइटिंग कैलकुलेशन फॉर्मूले पूरी तरह आपके फोन की लोकल मेमोरी (RAM) में चलते हैं। कोई भी कैलकुलेशन इनपुट या प्रोजेक्ट डेटा बाहरी सर्वर पर नहीं भेजा जाता।
@@ -324,57 +226,78 @@
 
       <section class="card">
         <h2>1. परिचय</h2>
-        <p>
-          AMP OHM को AudioXpert द्वारा साउंड इंजीनियर्स, ऑडियो ऑपरेटर्स, डीजे और स्टेज लाइटिंग तकनीशियनों को तेज़ और सटीक कैलकुलेशन टूल्स देने के लिए बनाया गया है। इसमें लाउडस्पीकर इम्पीडेंस (Series, Parallel और Series-Parallel), एम्पलीफायर पावर व हेडरूम मैचिंग, टॉप स्पीकर व क्रॉसओवर मैचिंग और DMX 512 फिक्स्चर एड्रेसिंग शामिल हैं। हम आपकी गोपनीयता का सम्मान करते हैं और डेटा प्रबंधन में पूर्ण पारदर्शिता रखते हैं।
-        </p>
+        <p>AMP OHM को AudioXpert द्वारा साउंड इंजीनियर्स, ऑडियो ऑपरेटर्स, डीजे और स्टेज लाइटिंग तकनीशियनों को तेज़ और सटीक कैलकुलेशन टूल्स देने के लिए बनाया गया है। इसमें लाउडस्पीकर इम्पीडेंस (Series, Parallel और Series-Parallel), एम्पलीफायर पावर व हेडरूम मैचिंग, टॉप स्पीकर व क्रॉसओवर मैचिंग और DMX 512 फिक्स्चर एड्रेसिंग शामिल हैं। हम आपकी गोपनीयता का सम्मान करते हैं।</p>
       </section>
 
       <section class="card">
         <h2>2. जानकारी और डेटा प्रबंधन</h2>
-        <p>पूरी स्पष्टता के लिए, हम बताते हैं कि विभिन्न प्रकार का डेटा कैसे प्रोसेस होता है:</p>
         <ul>
-          <li><strong>कैलकुलेटर इनपुट और परिणाम:</strong> कैलकुलेटर में डाली गई कोई भी संख्या (जैसे वॉटेज, स्पीकर ओह्म, स्पीकर की संख्या, हेडरूम या DMX चैनल) केवल आपके फोन की RAM में अस्थायी रूप से प्रोसेस होती है। यह किसी रिमोट सर्वर या बाहरी डेटाबेस में सेव नहीं होती।</li>
-          <li><strong>फोन में सुरक्षित लोकल सेटिंग्स:</strong> AMP OHM केवल बुनियादी सेटिंग्स के लिए आपके फोन के सुरक्षित लोकल स्टोरेज (SharedPreferences) का उपयोग करता है—जैसे थीम (नाइट/लाइट मोड), भाषा की पसंद, हैप्टिक फीडबैक, लोकल कैलकुलेशन हिस्ट्री, 60-मिनट के रिवॉर्ड पास का समय और ऑफलाइन सब्सक्रिप्शन स्टेटस।</li>
-          <li><strong>थर्ड-पार्टी SDK द्वारा डेटा:</strong> ऐप में मौजूद सेवाएं (Google AdMob, Google Play Billing, RevenueCat और Firebase) विज्ञापन दिखाने, इन-ऐप खरीदारी प्रोसेस करने, सब्सक्रिप्शन जांचने और रिमोट सेटिंग्स प्राप्त करने के लिए मानक तकनीकी जानकारी और अनाम डिवाइस पहचान (identifiers) उपयोग कर सकती हैं।</li>
-          <li><strong>AMP OHM द्वारा व्यक्तिगत डेटा:</strong> AMP OHM में अकाउंट बनाने, लॉगिन, पासवर्ड, मोबाइल नंबर या प्रोफाइल की आवश्यकता नहीं है। हम अपने सर्वर पर कोई व्यक्तिगत उपयोगकर्ता प्रोफाइल नहीं रखते।</li>
+          <li><strong>कैलकुलेटर इनपुट और परिणाम:</strong> कैलकुलेटर में डाली गई कोई भी संख्या केवल आपके फोन की RAM में अस्थायी रूप से प्रोसेस होती है और किसी रिमोट सर्वर पर सेव नहीं होती।</li>
+          <li><strong>फोन में सुरक्षित लोकल सेटिंग्स:</strong> AMP OHM केवल थीम (नाइट/लाइट मोड), भाषा की पसंद, हैप्टिक फीडबैक, लोकल कैलकुलेशन हिस्ट्री, 60-मिनट के रिवॉर्ड पास का समय और ऑफलाइन सब्सक्रिप्शन स्टेटस के लिए फोन के लोकल स्टोरेज (SharedPreferences) का उपयोग करता है।</li>
+          <li><strong>थर्ड-पार्टी SDK द्वारा डेटा:</strong> Google AdMob, Google Play Billing, RevenueCat और Firebase विज्ञापन दिखाने, सब्सक्रिप्शन प्रोसेस करने व रिमोट सेटिंग्स जांचने के लिए अनाम डिवाइस पहचान (identifiers) उपयोग कर सकते हैं।</li>
+          <li><strong>व्यक्तिगत डेटा:</strong> AMP OHM में अकाउंट बनाने, लॉगिन, पासवर्ड या मोबाइल नंबर की आवश्यकता नहीं है।</li>
         </ul>
       </section>
 
       <section class="card">
         <h2>3. कैलकुलेटर डेटा</h2>
-        <p>
-          सभी गणितीय गणनाएं और फॉर्मूले पूरी तरह आपके डिवाइस पर ऑफलाइन चलते हैं। आपके साउंड सिस्टम, स्टेज सेटअप, स्पीकर वायरिंग और कैलकुलेशन परिणाम केवल आपके फोन में ही रहते हैं। कोई भी प्रोजेक्ट फाइल या तकनीकी जानकारी AudioXpert या किसी तीसरे पक्ष को नहीं भेजी जाती।
-        </p>
+        <p>सभी गणनाएं और फॉर्मूले पूरी तरह आपके डिवाइस पर ऑफलाइन चलते हैं। आपके साउंड सिस्टम और स्टेज सेटअप का डेटा केवल आपके फोन में ही रहता है और AudioXpert या किसी तीसरे पक्ष को नहीं भेजा जाता।</p>
       </section>
 
       <section class="card">
         <h2>4. विज्ञापन (Google AdMob)</h2>
-        <p>AMP OHM का फ्री वर्जन Google AdMob (Google LLC) के विज्ञापनों द्वारा समर्थित है:</p>
         <ul>
-          <li><strong>बैनर विज्ञापन (Banner Ads):</strong> फ्री उपयोगकर्ताओं को कैलकुलेशन परिणाम स्क्रीन के नीचे बैनर विज्ञापन दिखाई देते हैं।</li>
-          <li><strong>रिवॉर्डेड वीडियो विज्ञापन (Rewarded Video Ads):</strong> उपयोगकर्ता अपनी इच्छा से एक छोटा वीडियो विज्ञापन देखकर 60 मिनट तक सभी कैलकुलेटर्स को बिना वीडियो ऐड के अनलॉक कर सकते हैं।</li>
-          <li><strong>Pro सब्सक्राइबर्स के लिए ऐड-फ्री अनुभव:</strong> सक्रिय AMP OHM Pro सब्सक्राइबर्स के लिए सभी बैनर और वीडियो विज्ञापन पूरी तरह बंद रहते हैं।</li>
-          <li><strong>Google AdMob द्वारा डेटा प्रोसेसिंग:</strong> Google Mobile Ads SDK विज्ञापन दिखाने और फ्रॉड रोकने के लिए अनाम डिवाइस पहचान (जैसे Android Advertising ID / AAID), अनुमानित लोकेशन के लिए IP पता और विज्ञापन इंटरैक्शन डेटा प्रोसेस कर सकता है।</li>
+          <li><strong>बैनर विज्ञापन:</strong> फ्री उपयोगकर्ताओं को कैलकुलेशन रिजल्ट स्क्रीन के नीचे बैनर विज्ञापन दिखाई देते हैं।</li>
+          <li><strong>रिवॉर्डेड वीडियो विज्ञापन:</strong> उपयोगकर्ता अपनी इच्छा से एक छोटा वीडियो विज्ञापन देखकर 60 मिनट तक सभी कैलकुलेटर्स को बिना वीडियो ऐड के अनलॉक कर सकते हैं।</li>
+          <li><strong>Pro सब्सक्राइबर्स के लिए ऐड-फ्री:</strong> सक्रिय AMP OHM Pro सब्सक्राइबर्स के लिए सभी विज्ञापन पूरी तरह बंद रहते हैं।</li>
+          <li><strong>डेटा प्रोसेसिंग:</strong> Google Mobile Ads SDK अनाम डिवाइस पहचान (AAID), अनुमानित लोकेशन के लिए IP पता और विज्ञापन इंटरैक्शन डेटा प्रोसेस कर सकता है। विवरण: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google विज्ञापन नीति</a>।</li>
         </ul>
-        <p>
-          Google की विज्ञापन नीति के बारे में अधिक जानने के लिए देखें:
-          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/ads</a>
-        </p>
       </section>
 
       <section class="card">
         <h2>5. इन-ऐप खरीदारी और सब्सक्रिप्शन (Google Play व RevenueCat)</h2>
-        <p>AMP OHM वैकल्पिक "AMP OHM Pro" सब्सक्रिप्शन प्रदान करता है, जिससे आपको 100% ऐड-फ्री अनुभव और सभी टूल्स का असीमित उपयोग मिलता है:</p>
         <ul>
-          <li><strong>Google Play द्वारा भुगतान:</strong> सभी सब्सक्रिप्शन पेमेंट केवल Google Play Billing के माध्यम से प्रोसेस होते हैं। AudioXpert या AMP OHM कभी भी आपके कार्ड, बैंक खाते या UPI की जानकारी न तो देखता है और न ही सेव करता है।</li>
-          <li><strong>RevenueCat द्वारा सब्सक्रिप्शन सत्यापन:</strong> हम रसीद जांचने, सक्रिय "ampohm Pro" मेंबरशिप की पुष्टि करने और "Restore Purchases" सुविधा के लिए RevenueCat SDK का उपयोग करते हैं।</li>
-          <li><strong>उपलब्ध प्लान:</strong> Pro मासिक (₹29 / माह) और Pro वार्षिक (₹199 / वर्ष) ऑटो-रिन्यू होने वाले प्लान उपलब्ध हैं।</li>
-          <li><strong>ऑटो-रिन्यूअल और कैंसिलेशन:</strong> जब तक आप बिलिंग अवधि समाप्त होने से कम से कम 24 घंटे पहले रद्द नहीं करते, सब्सक्रिप्शन Google Play के माध्यम से स्वतः रिन्यू होता है। आप कभी भी Google Play Store (Payments &amp; subscriptions &gt; Subscriptions) में जाकर इसे रद्द कर सकते हैं।</li>
-          <li><strong>खरीदारी रीस्टोर करें:</strong> उसी Google Play अकाउंट से किसी भी डिवाइस पर "Restore Google Play Purchases" पर टैप करके आप अपना सक्रिय प्लान वापस पा सकते हैं।</li>
+          <li><strong>Google Play द्वारा भुगतान:</strong> सभी पेमेंट केवल Google Play Billing के माध्यम से प्रोसेस होते हैं। AudioXpert कभी भी आपके कार्ड, बैंक खाते या UPI की जानकारी नहीं देखता और न ही सेव करता है।</li>
+          <li><strong>RevenueCat सत्यापन:</strong> रसीद जांचने और सक्रिय "ampohm Pro" मेंबरशिप की पुष्टि के लिए RevenueCat SDK का उपयोग होता है।</li>
+          <li><strong>उपलब्ध प्लान:</strong> Pro मासिक (₹29 / माह) और Pro वार्षिक (₹199 / वर्ष) ऑटो-रिन्यू प्लान उपलब्ध हैं।</li>
+          <li><strong>कैंसिलेशन व रीस्टोर:</strong> आप कभी भी Google Play Store (Payments &amp; subscriptions &gt; Subscriptions) में जाकर रद्द कर सकते हैं और "Restore Purchases" से अपना सक्रिय प्लान वापस पा सकते हैं।</li>
         </ul>
       </section>
 
       <section class="card">
         <h2>6. डेटा सुरक्षा</h2>
-        <p>
-          ह
+        <p>सभी बाहरी नेटवर्क संचार (Google Play Billing, RevenueCat, Google AdMob और Firebase) एन्क्रिप्टेड HTTPS/TLS कनेक्शन से होते हैं, और आपकी सेटिंग्स फोन के सुरक्षित स्टोरेज में रहती हैं।</p>
+      </section>
+
+      <section class="card">
+        <h2>7. बच्चों की गोपनीयता</h2>
+        <p>AMP OHM साउंड व लाइटिंग प्रोफेशनल्स के लिए बनाया गया तकनीकी ऐप है। यह 13 वर्ष से कम उम्र के बच्चों के लिए नहीं है और हम बच्चों से कोई व्यक्तिगत जानकारी एकत्र नहीं करते।</p>
+      </section>
+
+      <section class="card">
+        <h2>8. थर्ड-पार्टी सेवाएं</h2>
+        <ul>
+          <li><strong>Google AdMob (Google LLC)</strong> – फ्री उपयोगकर्ताओं के लिए विज्ञापन सेवा।</li>
+          <li><strong>Google Play Billing (Google LLC)</strong> – सब्सक्रिप्शन पेमेंट प्रोसेसिंग।</li>
+          <li><strong>RevenueCat (RevenueCat, Inc.)</strong> – सब्सक्रिप्शन स्थिति व रसीद सत्यापन।</li>
+          <li><strong>Google Firebase / Cloud Firestore (Google LLC)</strong> – केवल पढ़ने योग्य रिमोट कॉन्फ़िगरेशन जांच।</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>9. प्राइवेसी पॉलिसी में बदलाव</h2>
+        <p>AudioXpert समय-समय पर इस पॉलिसी को अपडेट कर सकता है। नवीनतम पॉलिसी हमेशा ऐप के सेटिंग्स सेक्शन और इस पेज पर उपलब्ध रहेगी।</p>
+      </section>
+
+      <section class="card">
+        <h2>10. संपर्क जानकारी</h2>
+        <p>इस प्राइवेसी पॉलिसी से जुड़े किसी भी सवाल के लिए AudioXpert से संपर्क करें: <a href="mailto:audioxpert123@gmail.com">audioxpert123@gmail.com</a></p>
+      </section>
+    </div>
+
+    <div class="footer">
+      &copy; 2026 AudioXpert • AMP OHM (com.ampohm.app)
+    </div>
+  </main>
+</body>
+</html>
